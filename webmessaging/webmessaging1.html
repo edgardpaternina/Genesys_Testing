@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Demo Web Messaging</title>
+<link rel="stylesheet" href="css/webmessaging1.css">
+<script type="text/javascript" charset="utf-8" src="js/webmessaging1.js"> </script>
+
+</head>
+<body id="body">
+<div class="divFrm">
+    <div class="divField">
+
+      <label for="CBoxdeploymentId">Escoger deployment:</label>
+        <select name="CBoxdeploymentId" id="CBoxdeploymentId">
+          <option value="af5f8e01-a262-4c16-aa04-cdb544818d95">LatamPS    - LeonelC     - af5f8e01-a262-4c16-aa04-cdb544818d95</option>
+          <option value="68240440-dd57-4e69-af59-254f9a2c1370">Davivienda - Deployment_Messenger_Desarrollo - 68240440-dd57-4e69-af59-254f9a2c1370</option>
+          <option value="e8a6d5a0-78a5-4afb-bee7-135d1c2e0fe3">Davivienda - Demo Deploment - e8a6d5a0-78a5-4afb-bee7-135d1c2e0fe3</option>
+          <option value="b3c47a3c-f9e7-4b42-bc66-13217e665d95">Davivienda - Deployment_Messenger_Desarrollo_Encuestas - b3c47a3c-f9e7-4b42-bc66-13217e665d95</option>
+          <option value="4826e24f-58e6-4c7f-935d-fae4af49377a">Davivienda - Deployment_Messenger_ZonaPrivada_WEB_LAB - 4826e24f-58e6-4c7f-935d-fae4af49377a</option>
+          <option value="c1f5bf32-077d-48af-9d4b-1486880bd38c">Davivienda - Prod_ZonaPublica - c1f5bf32-077d-48af-9d4b-1486880bd38c</option>
+          <option value="f837ca35-88c8-488d-a24c-326338594840">Davivienda - Prod_ZonaPrivada - f837ca35-88c8-488d-a24c-326338594840 </option>
+      </select>
+    </div>
+  <div class="divField">
+      <button id="btngenesysWidget"  onclick="genesysWidget();">Iniciar Widget escogido</button>
+  </div>
+</div>
+<div class="divField">
+  <div class="estado" id="estado">No disponible</div>
+</div>
+
+<div class="divField">
+<button id="toggle" onclick="ToggleWidget()">Mostrar Chat</button>
+</div>
+
+
+<div class="divField">
+  <button id="btnIniciarChat" class="oculto" onclick="BntInciarChat();">Iniciar Chat</button>
+</div>
+
+<div class="divField">
+  <button id="btnIniciarChat"  onclick="EliminarHistorial();">Eliminar Historial</button>
+</div>
+
+
+<!-- Trigger/Open The Modal -->
+<button class="oculto" id="myBtn">Open Modal</button>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Link enviado por el agente</p>
+    <embed  id="embed1" width="560" height="315" src="" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+</div>
+
+
+</body>
+</html>
