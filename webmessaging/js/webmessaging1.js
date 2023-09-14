@@ -28,6 +28,7 @@ function genesysWidget() {
     deploymentId: gdeploymentId,
   });
   if (gdeploymentId == "eca6822c-3d4b-4743-b95b-9750d2905991") {
+    console.log("==== Eventos  :: app zona publica");
     Genesys("command", "Messenger.open", {}, function (o) {});
     boton.innerHTML = "Ocultar Chat";
   }
