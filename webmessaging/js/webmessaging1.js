@@ -254,7 +254,7 @@ function AsignarAtributos() {
   Genesys("command", "Database.set", {
     messaging: {
       customAttributes: {
-        nid: "80243820",
+        nid: "123456",
         tid: "01",
       },
     },
