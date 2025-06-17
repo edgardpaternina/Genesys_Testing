@@ -140,11 +140,10 @@ function Eventos() {
 
   let btnGenesysWidget = document.getElementById("btnGenesysWidget");
   let btnIniciar = document.getElementById("btnIniciarChat");
-  let btnToggle = document.getElementById("btnToggle");
+  
   
   btnGenesysWidget.className = "oculto";
   btnIniciarChat.className = "visible";
-  btnToggle.className = "visible";
   
   console.log("== Eventos :: Final ==");
 }
@@ -160,6 +159,8 @@ function iniciarChat() {
   if (!messengerOpened){
     Genesys("command", "Messenger.open", {}, function(){}, function(){});
   }
+  let btnToggle = document.getElementById("btnToggle");
+  btnToggle.className = "visible";
 }
 
 function toggleWidget() {
@@ -200,6 +201,6 @@ let messengerOpened = false;
 let messengerReadyCount = 0;
 
 window.onload = function () {
-  console.log("Version 1.3");
+  console.log("Version 1.4");
   intervalID = setInterval(Eventos, 500);
 }
