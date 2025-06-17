@@ -82,7 +82,11 @@ function Eventos() {
         console.log("** Desplegar Encuesta **");
       }
       if (!newSession && !activeReload){
-        Genesys("command", "MessagingService.resetConversation", {}, function(){}, function(){});
+        Genesys("command", "MessagingService.resetConversation", {}, function(){
+          console.log("*** messagingservice.resetconversation Accepted ***");
+        }, function(){
+          console.log("*** messagingservice.resetconversation Rejected ***");
+        });
         newSession = false;
       }
     }
@@ -240,7 +244,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.7");
+  console.log("Version 1.8");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
