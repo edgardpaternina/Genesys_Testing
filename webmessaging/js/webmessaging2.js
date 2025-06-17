@@ -191,6 +191,6 @@ let messengerOpened = false;
 let messengerReadyCount = 0;
 
 window.onload = function () {
-  console.log("1.0");
+  console.log("Version 1.0");
   intervalID = setInterval(Eventos, 500);
 }
