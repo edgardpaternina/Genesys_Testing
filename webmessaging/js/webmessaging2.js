@@ -107,9 +107,11 @@ function Eventos() {
 
   let btnGenesysWidget = document.getElementById("btnGenesysWidget");
   let btnIniciar = document.getElementById("btnIniciarChat");
+  let btnToggle = document.getElementById("btnToggle");
   
   btnGenesysWidget.className = "oculto";
   btnIniciarChat.className = "visible";
+  btnToggle.className = "oculto";
   
   console.log("== Eventos :: Final ==");
 }
