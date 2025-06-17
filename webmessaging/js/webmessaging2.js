@@ -76,21 +76,21 @@ function Eventos() {
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Conversations.ready", function(){
+  Genesys("subscribe", "Conversations.ready", function(data){
     console.log("** " + data.event + " **");
     AsignarAtributos();
   });
   
-  Genesys("subscribe", "Conversations.started", function(){
+  Genesys("subscribe", "Conversations.started", function(data){
     console.log("** " + data.event + " **");
     AsignarAtributos();
   });
   
-  Genesys("subscribe", "Conversations.closed", function(){
+  Genesys("subscribe", "Conversations.closed", function(data){
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Conversations.opened", function(){
+  Genesys("subscribe", "Conversations.opened", function(data){
     console.log("** " + data.event + " **");
   });
   
