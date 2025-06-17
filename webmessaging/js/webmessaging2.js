@@ -1,7 +1,7 @@
 function genesysWidget() {
   Window.Genesys = null;
   let gdeploymentId;
-  gdeploymentId = document.getElementById("CBoxdeploymentId").value;
+  gdeploymentId = document.getElementById("CBoxDeploymentId").value;
 
   (function (g, e, n, es, ys) {
     g["_genesysJs"] = e;
@@ -99,6 +99,9 @@ function Eventos() {
   });
   
   clearInterval(intervalID);
+  
+  let btnGenesysWidget = document.getElementById("btnGenesysWidget");
+  btnGenesysWidget.className = "oculto";
   let btnIniciarChat = document.getElementById("btnIniciarChat");
   btnIniciarChat.className = "visible";
   
@@ -134,7 +137,5 @@ function ValidarAtributos() {
 let intervalID;
 
 window.onload = function () {
-  let btngenesysWidget = document.getElementById("btngenesysWidget");
-  btngenesysWidget.className = "oculto";
   intervalID = setInterval(Eventos, 500);
 }
