@@ -65,6 +65,9 @@ function Eventos() {
       }
       let btnToggle = document.getElementById("btnToggle");
       btnToggle.className = "visible";
+
+      let btnIniciar = document.getElementById("btnIniciarChat");
+      btnIniciarChat.className = "oculto";
     }
   });
 
@@ -183,6 +186,9 @@ function iniciarChat() {
   }
   let btnToggle = document.getElementById("btnToggle");
   btnToggle.className = "visible";
+
+  let btnIniciar = document.getElementById("btnIniciarChat");
+  btnIniciarChat.className = "oculto";
 }
 
 function toggleWidget() {
@@ -234,7 +240,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.10");
+  console.log("Version 1.11");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
