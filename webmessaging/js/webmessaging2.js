@@ -111,12 +111,10 @@ function Eventos() {
   
   Genesys("subscribe", "Conversations.ready", function(data){
     console.log("** " + data.event + " **");
-    AsignarAtributos();
   });
   
   Genesys("subscribe", "Conversations.started", function(data){
     console.log("** " + data.event + " **");
-    AsignarAtributos();
   });
   
   Genesys("subscribe", "Conversations.closed", function(data){
@@ -148,6 +146,7 @@ function iniciarChat() {
   fromIniciar = true;
 
   if(loadPage){
+    AsignarAtributosInicio();
     loadPage = false;
   }
   Genesys("command", "Launcher.show", {}, function(){}, function(){});
@@ -165,7 +164,7 @@ function toggleWidget() {
   }
 }
 
-function AsignarAtributos() {
+function AsignarAtributosInicio() {
   Genesys("command", "Database.set", {
     messaging: {
       customAttributes: {
