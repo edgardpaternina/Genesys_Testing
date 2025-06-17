@@ -45,7 +45,10 @@ function Eventos() {
     newSession = data.data.newSession;
     statusData = {
       "conversationActive": conversationActive,
-      "newSession": newSession
+      "newSession": newSession,
+      "launcherReady": launcherReady,
+      "messengerOpened": messengerOpened,
+      "fromIniciar": fromIniciar
     }
     console.log(statusData);
     if (conversationActive && !fromIniciar){
@@ -64,6 +67,13 @@ function Eventos() {
 
   Genesys("subscribe", "MessagingService.conversationDisconnected", function(data){
     console.log("** " + data.event + " **");
+    statusData = {
+      "fromIniciar": fromIniciar,
+      "conversationActive": conversationActive,
+      "newSession": newSession,
+      "activeReload": activeReload
+    }
+    console.log(statusData);
     if (fromIniciar){
       if (conversationActive){
         fromIniciar = false;
@@ -229,7 +239,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.6");
+  console.log("Version 1.7");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
