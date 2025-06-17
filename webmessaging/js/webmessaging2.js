@@ -63,6 +63,8 @@ function Eventos() {
       if (!messengerOpened){
         Genesys("command", "Messenger.open", {}, function(){}, function(){});
       }
+      let btnToggle = document.getElementById("btnToggle");
+      btnToggle.className = "visible";
     }
   });
 
@@ -244,7 +246,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.8");
+  console.log("Version 1.9");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
