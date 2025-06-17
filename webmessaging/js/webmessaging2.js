@@ -111,7 +111,7 @@ function Eventos() {
   
   btnGenesysWidget.className = "oculto";
   btnIniciarChat.className = "visible";
-  btnToggle.className = "oculto";
+  btnToggle.className = "visible";
   
   console.log("== Eventos :: Final ==");
 }
