@@ -100,7 +100,7 @@ function Eventos() {
 
   Genesys("subscribe", "MessagingService.messagesReceived", function(data){
     console.log("** " + data.event + " **");
-    if (data.data.messages[0].direction == "Outboubd"){
+    if (data.data.messages[0].direction == "Outbound"){
       if (playNotification){
         console.log("** Reproducir Sonido **");
       }
@@ -242,7 +242,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.12");
+  console.log("Version 1.13");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
