@@ -149,7 +149,7 @@ let activeReload = false;
 let triggerSurvey = true;
 let playNotification = true;
 
-let startGenesysWidget = document.getElementById("startGenesysWidget");
+let btnGenesysWidget = document.getElementById("btnGenesysWidget");
 let btnIniciar = document.getElementById("btnIniciarChat");
 let btnToggle = document.getElementById("btnToggle");
 let fieldEstado = document.getElementById("fieldEstado");
