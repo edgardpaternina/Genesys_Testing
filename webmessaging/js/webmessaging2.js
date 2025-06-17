@@ -51,7 +51,10 @@ function Eventos() {
       loadPage = false;
       fromIniciar = true;
       activeReload = true;
-      Genesys("command", "Launcher.show", {}, function(){}, function(){});
+      if (launcherReady){
+        Genesys("command", "Launcher.show", {}, function(){}, function(){});
+      }
+      launcherDisplay = true;
       if (!messengerOpened){
         Genesys("command", "Messenger.open", {}, function(){}, function(){});
       }
@@ -110,6 +113,10 @@ function Eventos() {
   Genesys("subscribe", "Launcher.ready", function(data){
     console.log("** " + data.event + " **");
     Genesys("command", "Launcher.hide", {}, function(){}, function(){});
+    launcherReady = true;
+    if (launcherDisplay){
+      Genesys("command", "Launcher.show", {}, function(){}, function(){});
+    }
   });
   
   Genesys("subscribe", "Launcher.visible", function(data){
@@ -155,7 +162,10 @@ function iniciarChat() {
     AsignarAtributosInicio();
     loadPage = false;
   }
-  Genesys("command", "Launcher.show", {}, function(){}, function(){});
+  if (launcherReady){
+    Genesys("command", "Launcher.show", {}, function(){}, function(){});
+  }
+  launcherDisplay = true;
   if (!messengerOpened){
     Genesys("command", "Messenger.open", {}, function(){}, function(){});
   }
@@ -199,8 +209,10 @@ let triggerSurvey = true;
 let playNotification = true;
 let messengerOpened = false;
 let messengerReadyCount = 0;
+let launcherReady = false;
+let launcherDisplay = false;
 
 window.onload = function () {
-  console.log("Version 1.4");
+  console.log("Version 1.5");
   intervalID = setInterval(Eventos, 500);
 }
