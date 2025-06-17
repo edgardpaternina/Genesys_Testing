@@ -32,32 +32,48 @@ function Eventos() {
 
   Genesys("subscribe", "MessagingService.ready", function(data){
     console.log("** " + data.event + " **");
-  });
-  
-  Genesys("subscribe", "MessagingService.started", function(data){
-    console.log("** " + data.event + " **");
     let btnIniciar = document.getElementById("btnIniciarChat");
     if(fromIniciar){
       btnIniciarChat.className = "oculto"
     }
   });
+  
+  Genesys("subscribe", "MessagingService.started", function(data){
+    console.log("** " + data.event + " **");
+    conversationActive = !data.data.readOnly;
+    newSession = data.data.newSession;
+    if(conversationActive && !fromIniciar){
+      loadPage = false;
+      fromIniciar = true;
+      activeReload = true;
+      Genesys("command", "Launcher.show", {}, function(){}, function(){});
+      Genesys("command", "Messenger.open", {}, function(){}, function(){});
+    }
+  });
 
   Genesys("subscribe", "MessagingService.conversationDisconnected", function(data){
     console.log("** " + data.event + " **");
+    if(fromIniciar){
+      if(conversationActive){
+        fromIniciar = false;
+        playNotification = false;
+        console.log("** Desplegar Encuesta **");
+      }
+      if(!newSession && !activeReload){
+        Genesys("command", "MessagingService.resetConversation", {}, function(){}, function(){});
+        newSession = false;
+      }
+    }
+    conversationActive = false;
   });
 
   Genesys("subscribe", "MessagingService.messageReceived", function(data){
     console.log("** " + data.event + " **");
+    if(playNotification){
+      console.log("** Reproducir Sonido **");
+    }
   });
-  
-  Genesys("subscribe", "Launcher.ready", function(data){
-    console.log("** " + data.event + " **");
-  });
-  
-  Genesys("subscribe", "Launcher.visible", function(data){
-    console.log("** " + data.event + " **");
-  });
-  
+
   Genesys("subscribe", "Messenger.ready", function(data){
     console.log("** " + data.event + " **");
     messengerReadyCount = messengerReadyCount + 1;
@@ -72,6 +88,9 @@ function Eventos() {
     messengerOpened = true;
     let btnToggle = document.getElementById("btnToggle");
     btnToggle.innerHTML = "Ocultar Chat";
+    if(loadPage){
+      Genesys("command", "Messenger.close", {}, function(){}, function(){});
+    }
   });
 
   Genesys("subscribe", "Messenger.closed", function(data){
@@ -79,6 +98,15 @@ function Eventos() {
     messengerClosed = false;
     let btnToggle = document.getElementById("btnToggle");
     btnToggle.innerHTML = "Mostrar Chat";
+  });
+  
+  Genesys("subscribe", "Launcher.ready", function(data){
+    console.log("** " + data.event + " **");
+    Genesys("command", "Launcher.hide", {}, function(){}, function(){});
+  });
+  
+  Genesys("subscribe", "Launcher.visible", function(data){
+    console.log("** " + data.event + " **");
   });
   
   Genesys("subscribe", "Conversations.ready", function(data){
