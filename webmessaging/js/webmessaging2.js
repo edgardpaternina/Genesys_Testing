@@ -100,6 +100,7 @@ function Eventos() {
 
   Genesys("subscribe", "MessagingService.messagesReceived", function(data){
     console.log("** " + data.event + " **");
+    console.log(data);
     if (playNotification){
       console.log("** Reproducir Sonido **");
     }
