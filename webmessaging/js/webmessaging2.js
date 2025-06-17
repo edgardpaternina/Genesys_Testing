@@ -66,15 +66,16 @@ function Eventos() {
   
   Genesys("subscribe", "Messenger.opened", function(data){
     console.log("** " + data.event + " **");
+    messengerOpened = true;
     let btnToggle = document.getElementById("btnToggle");
-    if (btnToggle.innerHTML == "Mostrar Chat") {
-      Genesys("command", "Messenger.open", {}, function(){}, function(){});
-      btnToggle.innerHTML = "Ocultar Chat";
-    }  
+    btnToggle.innerHTML = "Ocultar Chat";
   });
 
   Genesys("subscribe", "Messenger.closed", function(data){
     console.log("** " + data.event + " **");
+    messengerClosed = false;
+    let btnToggle = document.getElementById("btnToggle");
+    btnToggle.innerHTML = "Mostrar Chat";
   });
   
   Genesys("subscribe", "Conversations.ready", function(data){
@@ -154,6 +155,7 @@ let newSession = false;
 let activeReload = false;
 let triggerSurvey = true;
 let playNotification = true;
+let messengerOpened = false;
 
 window.onload = function () {
   intervalID = setInterval(Eventos, 500);
