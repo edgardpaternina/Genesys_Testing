@@ -44,11 +44,12 @@ function Eventos() {
     conversationActive = !data.data.readOnly;
     newSession = data.data.newSession;
     statusData = {
+      "fromIniciar": fromIniciar,
       "conversationActive": conversationActive,
       "newSession": newSession,
       "launcherReady": launcherReady,
-      "messengerOpened": messengerOpened,
-      "fromIniciar": fromIniciar
+      "messengerOpened": messengerOpened
+      
     }
     console.log(statusData);
     if (conversationActive && !fromIniciar){
