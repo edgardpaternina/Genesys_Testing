@@ -97,7 +97,7 @@ function Eventos() {
 
   Genesys("subscribe", "Messenger.closed", function(data){
     console.log("** " + data.event + " **");
-    messengerClosed = false;
+    messengerOpened = false;
     let btnToggle = document.getElementById("btnToggle");
     btnToggle.innerHTML = "Mostrar Chat";
   });
@@ -195,6 +195,6 @@ let messengerOpened = false;
 let messengerReadyCount = 0;
 
 window.onload = function () {
-  console.log("Version 1.1");
+  console.log("Version 1.2");
   intervalID = setInterval(Eventos, 500);
 }
