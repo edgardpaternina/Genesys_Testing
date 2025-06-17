@@ -32,6 +32,7 @@ function Eventos() {
 
   Genesys("subscribe", "MessagingService.ready", function(data){
     console.log("** " + data.event + " **");
+    messengerServiceReady = true;
     let btnIniciar = document.getElementById("btnIniciarChat");
     if (fromIniciar){
       btnIniciarChat.className = "oculto"
@@ -86,6 +87,7 @@ function Eventos() {
 
   Genesys("subscribe", "Messenger.ready", function(data){
     console.log("** " + data.event + " **");
+    messengerReady = true;
     messengerReadyCount = messengerReadyCount + 1;
     if (messengerReadyCount > 1){
       let fieldEstado = document.getElementById("fieldEstado");
@@ -143,16 +145,21 @@ function Eventos() {
     console.log("** " + data.event + " **", o.data.error);
   });
   
-  clearInterval(intervalID);
+  clearInterval(intervalIdEventos);
 
   let btnGenesysWidget = document.getElementById("btnGenesysWidget");
-  let btnIniciar = document.getElementById("btnIniciarChat");
-  
   
   btnGenesysWidget.className = "oculto";
-  btnIniciarChat.className = "visible";
   
   console.log("== Eventos :: Final ==");
+}
+
+function checkStart(){
+  if (messengerReady && launcherReady){
+    let btnIniciar = document.getElementById("btnIniciarChat");
+    btnIniciarChat.className = "visible";
+    clearInterval(intervalIdStart);
+  }
 }
 
 function iniciarChat() {
@@ -200,19 +207,29 @@ function ValidarAtributos() {
 }
 
 let loadPage = true;
-let intervalId;
+let activeReload = false;
+
 let fromIniciar = false;
+let playNotification = true;
+
 let conversationActive = false;
 let newSession = false;
-let activeReload = false;
-let triggerSurvey = true;
-let playNotification = true;
+
+
+let messengerReady = false;
 let messengerOpened = false;
 let messengerReadyCount = 0;
+
 let launcherReady = false;
 let launcherDisplay = false;
 
+let messengerServiceReady = false;
+
+let intervalIdEventos;
+let intervalIdStart;
+
 window.onload = function () {
-  console.log("Version 1.5");
-  intervalID = setInterval(Eventos, 500);
+  console.log("Version 1.6");
+  intervalIdEventos = setInterval(Eventos, 500);
+  intervalIdStart = setInterval(checkStart, 500);
 }
