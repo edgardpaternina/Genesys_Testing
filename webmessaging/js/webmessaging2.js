@@ -40,8 +40,6 @@ function Eventos() {
     if(fromIniciar){
       btnIniciarChat.className = "oculto"
     }
-    let fieldEstado = document.getElementById("fieldEstado");
-    fieldEstado.innerHTML = "Listo";
   });
 
   Genesys("subscribe", "MessagingService.conversationDisconnected", function(data){
@@ -62,6 +60,11 @@ function Eventos() {
   
   Genesys("subscribe", "Messenger.ready", function(data){
     console.log("** " + data.event + " **");
+    messengerReadyCount = messengerReadyCount + 1;
+    if(messengerReadyCount > 1){
+      let fieldEstado = document.getElementById("fieldEstado");
+      fieldEstado.innerHTML = "Listo";
+    }
   });
   
   Genesys("subscribe", "Messenger.opened", function(data){
@@ -156,6 +159,7 @@ let activeReload = false;
 let triggerSurvey = true;
 let playNotification = true;
 let messengerOpened = false;
+let messengerReadyCount = 0;
 
 window.onload = function () {
   intervalID = setInterval(Eventos, 500);
