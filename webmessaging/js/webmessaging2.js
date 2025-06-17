@@ -44,11 +44,11 @@ function Eventos() {
     conversationActive = !data.data.readOnly;
     newSession = data.data.newSession;
     statusData = {
-      "fromIniciar": fromIniciar,
-      "conversationActive": conversationActive,
-      "newSession": newSession,
-      "launcherReady": launcherReady,
-      "messengerOpened": messengerOpened
+      fromIniciar: fromIniciar,
+      conversationActive: conversationActive,
+      newSession: newSession,
+      launcherReady: launcherReady,
+      messengerOpened: messengerOpened
       
     }
     console.log(statusData);
@@ -74,10 +74,10 @@ function Eventos() {
   Genesys("subscribe", "MessagingService.conversationDisconnected", function(data){
     console.log("** " + data.event + " **");
     statusData = {
-      "fromIniciar": fromIniciar,
-      "conversationActive": conversationActive,
-      "newSession": newSession,
-      "activeReload": activeReload
+      fromIniciar: fromIniciar,
+      conversationActive: conversationActive,
+      newSession: newSession,
+      activeReload: activeReload
     }
     console.log(statusData);
     if (fromIniciar){
@@ -215,6 +215,16 @@ function AsignarAtributosInicio() {
   });
 }
 
+function AsignarAtributosFinalizada() {
+  Genesys("command", "Database.set", {
+    messaging: {
+      customAttributes: {
+        conversationEnded: "true"
+      },
+    },
+  });
+}
+
 function ValidarAtributos() {
   const attr = Genesys("command", "Database.get", {}, function(data){});
 }
@@ -242,7 +252,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.13");
+  console.log("Version 1.14");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
