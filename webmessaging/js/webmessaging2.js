@@ -80,6 +80,10 @@ function Eventos() {
       boton.innerHTML = "Ocultar Chat";
     }  
   });
+
+  Genesys("subscribe", "Messenger.closed", function(data){
+    console.log("** " + data.event + " **");
+  });
   
   Genesys("subscribe", "Conversations.ready", function(data){
     console.log("** " + data.event + " **");
