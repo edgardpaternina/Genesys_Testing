@@ -36,10 +36,11 @@ function Eventos() {
   
   Genesys("subscribe", "MessagingService.started", function(data){
     console.log("** " + data.event + " **");
+    let btnIniciar = document.getElementById("btnIniciarChat");
     if(fromIniciar){
       btnIniciarChat.className = "oculto"
     }
-    
+    let fieldEstado = document.getElementById("fieldEstado");
     fieldEstado.innerHTML = "Listo";
   });
 
@@ -65,6 +66,7 @@ function Eventos() {
   
   Genesys("subscribe", "Messenger.opened", function(data){
     console.log("** " + data.event + " **");
+    let btnToggle = document.getElementById("btnToggle");
     if (btnToggle.innerHTML == "Mostrar Chat") {
       Genesys("command", "Messenger.open", {}, function(){}, function(){});
       btnToggle.innerHTML = "Ocultar Chat";
@@ -98,6 +100,9 @@ function Eventos() {
   });
   
   clearInterval(intervalID);
+
+  let btnGenesysWidget = document.getElementById("btnGenesysWidget");
+  let btnIniciar = document.getElementById("btnIniciarChat");
   
   btnGenesysWidget.className = "oculto";
   btnIniciarChat.className = "visible";
@@ -116,6 +121,7 @@ function iniciarChat() {
 }
 
 function toggleWidget() {
+  let btnToggle = document.getElementById("btnToggle");
   if (btnToggle.innerHTML == "Mostrar Chat") {
     Genesys("command", "Messenger.open", {}, function(){}, function(){});
     btnToggle.innerHTML = "Ocultar Chat";
@@ -148,11 +154,6 @@ let newSession = false;
 let activeReload = false;
 let triggerSurvey = true;
 let playNotification = true;
-
-let btnGenesysWidget = document.getElementById("btnGenesysWidget");
-let btnIniciar = document.getElementById("btnIniciarChat");
-let btnToggle = document.getElementById("btnToggle");
-let fieldEstado = document.getElementById("fieldEstado");
 
 window.onload = function () {
   intervalID = setInterval(Eventos, 500);
