@@ -35,7 +35,7 @@ function ToggleWidget() {
 }
 
 function Eventos() {
-  if (typeof Genesys == "undefined") {
+  if (typeof Genesys == "undefined"){
     return;
   }
 
@@ -45,56 +45,56 @@ function Eventos() {
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "MessagingService.started", function (data){
+  Genesys("subscribe", "MessagingService.started", function(data){
     console.log("** " + data.event + " **");
     
     let btngenesysWidget = document.getElementById("estado");
     btngenesysWidget.innerHTML = "Listo";
   });
 
-  Genesys("subscribe", "MessagingService.conversationDisconnected", function (data){
+  Genesys("subscribe", "MessagingService.conversationDisconnected", function(data){
     console.log("** " + data.event + " **");
-  };
+  });
 
-  Genesys("subscribe", "MessagingService.messageReceived", function (data){
-    console.log("** " + data.event + " **");
-  };
-  
-  Genesys("subscribe", "Launcher.ready", function (data) {
+  Genesys("subscribe", "MessagingService.messageReceived", function(data){
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Launcher.visible", function (data) {
+  Genesys("subscribe", "Launcher.ready", function(data){
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Messenger.ready", function (data) {
+  Genesys("subscribe", "Launcher.visible", function(data){
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Messenger.opened", function (data) {
+  Genesys("subscribe", "Messenger.ready", function(data){
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Conversations.ready", function () {
+  Genesys("subscribe", "Messenger.opened", function(data){
+    console.log("** " + data.event + " **");
+  });
+  
+  Genesys("subscribe", "Conversations.ready", function(){
     console.log("** " + data.event + " **");
     AsignarAtributos();
   });
   
-  Genesys("subscribe", "Conversations.started", function () {
+  Genesys("subscribe", "Conversations.started", function(){
     console.log("** " + data.event + " **");
     AsignarAtributos();
   });
   
-  Genesys("subscribe", "Conversations.closed", function () {
+  Genesys("subscribe", "Conversations.closed", function(){
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Conversations.opened", function () {
+  Genesys("subscribe", "Conversations.opened", function(){
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Conversations.error", function () {
+  Genesys("subscribe", "Conversations.error", function(){
     console.log("** " + data.event + " **", o.data.error);
   });
   
