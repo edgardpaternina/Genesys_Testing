@@ -146,18 +146,6 @@ function Eventos() {
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Conversations.started", function(data){
-    console.log("** " + data.event + " **");
-  });
-  
-  Genesys("subscribe", "Conversations.closed", function(data){
-    console.log("** " + data.event + " **");
-  });
-  
-  Genesys("subscribe", "Conversations.opened", function(data){
-    console.log("** " + data.event + " **");
-  });
-  
   Genesys("subscribe", "Conversations.error", function(){
     console.log("** " + data.event + " **", o.data.error);
   });
@@ -246,7 +234,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.9");
+  console.log("Version 1.10");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
