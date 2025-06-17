@@ -1,4 +1,4 @@
-function genesysWidget() {
+function startGenesysWidget() {
   Window.Genesys = null;
   let gdeploymentId;
   gdeploymentId = document.getElementById("CBoxDeploymentId").value;
@@ -23,8 +23,8 @@ function genesysWidget() {
   });
 }
 
-function ToggleWidget() {
-  let boton = document.getElementById("toggle");
+function toggleWidget() {
+  let boton = document.getElementById("btnToggle");
   if (boton.innerHTML == "Mostrar Chat") {
     Genesys("command", "Messenger.open", {}, function(){}, function(){});
     boton.innerHTML = "Ocultar Chat";
@@ -74,6 +74,11 @@ function Eventos() {
   
   Genesys("subscribe", "Messenger.opened", function(data){
     console.log("** " + data.event + " **");
+    let boton = document.getElementById("btnToggle");
+    if (boton.innerHTML == "Mostrar Chat") {
+      Genesys("command", "Messenger.open", {}, function(){}, function(){});
+      boton.innerHTML = "Ocultar Chat";
+    }  
   });
   
   Genesys("subscribe", "Conversations.ready", function(data){
