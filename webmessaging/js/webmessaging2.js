@@ -67,7 +67,7 @@ function Eventos() {
     conversationActive = false;
   });
 
-  Genesys("subscribe", "MessagingService.messageReceived", function(data){
+  Genesys("subscribe", "MessagingService.messagesReceived", function(data){
     console.log("** " + data.event + " **");
     if(playNotification){
       console.log("** Reproducir Sonido **");
