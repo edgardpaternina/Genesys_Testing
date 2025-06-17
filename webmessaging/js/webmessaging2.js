@@ -42,6 +42,11 @@ function Eventos() {
     console.log("** " + data.event + " **");
     conversationActive = !data.data.readOnly;
     newSession = data.data.newSession;
+    statusData = {
+      "conversationActive": conversationActive,
+      "newSession": newSession
+    }
+    console.log(statusData);
     if (conversationActive && !fromIniciar){
       loadPage = false;
       fromIniciar = true;
@@ -195,6 +200,6 @@ let messengerOpened = false;
 let messengerReadyCount = 0;
 
 window.onload = function () {
-  console.log("Version 1.2");
+  console.log("Version 1.3");
   intervalID = setInterval(Eventos, 500);
 }
