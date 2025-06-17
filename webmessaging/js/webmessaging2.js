@@ -118,6 +118,7 @@ function Eventos() {
 }
 
 function iniciarChat() {
+  Genesys("command", "MessagingService.startConversation", {}, function(){}, function(){});
   let boton = document.getElementById("btnToggle");
   boton.innerHTML = "Ocultar Chat";
 }
