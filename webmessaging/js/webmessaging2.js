@@ -100,12 +100,18 @@ function Eventos() {
 
   Genesys("subscribe", "MessagingService.messagesReceived", function(data){
     console.log("** " + data.event + " **");
+    console.log(data);
     if (data.data.messages[0].direction == "Outbound"){
       if (playNotification){
         console.log("** Reproducir Sonido **");
       }
     }
   });
+
+  Genesys("subscribe", "MessagingService.error", function(data){
+    console.log("** " + data.event + " **");
+    console.log(data.body);
+  };
 
   Genesys("subscribe", "Messenger.ready", function(data){
     console.log("** " + data.event + " **");
@@ -147,18 +153,9 @@ function Eventos() {
     console.log("** " + data.event + " **");
   });
   
-  Genesys("subscribe", "Conversations.ready", function(data){
-    console.log("** " + data.event + " **");
-  });
-  
-  Genesys("subscribe", "Conversations.error", function(){
-    console.log("** " + data.event + " **", o.data.error);
-  });
-  
   clearInterval(intervalIdEventos);
 
   let btnGenesysWidget = document.getElementById("btnGenesysWidget");
-  
   btnGenesysWidget.className = "oculto";
   
   console.log("== Eventos :: Final ==");
@@ -252,7 +249,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.14");
+  console.log("Version 1.15");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
