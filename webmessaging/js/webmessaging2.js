@@ -98,13 +98,14 @@ function Eventos() {
     conversationActive = false;
   });
 
-  Genesys("subscribe", "MessagingService.messagesReceived", function(data){
-    console.log("** " + data.event + " **");
-    if (data.data.messages[0].direction == "Outbound"){
+  Genesys("subscribe", "MessagingService.messagesReceived", function({data}){
+    //console.log("** " + data.event + " **");
+    console.log(data);
+    /*if (data.data.messages[0].direction == "Outbound"){
       if (playNotification){
         console.log("** Reproducir Sonido **");
       }
-    }
+    }*/
   });
 
   Genesys("subscribe", "MessagingService.error", function(data){
@@ -251,7 +252,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.16");
+  console.log("Version 1.17");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
