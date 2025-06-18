@@ -100,7 +100,6 @@ function Eventos() {
 
   Genesys("subscribe", "MessagingService.messagesReceived", function(data){
     console.log("** " + data.event + " **");
-    console.log(data);
     if (data.data.messages[0].direction == "Outbound"){
       if (playNotification){
         console.log("** Reproducir Sonido **");
@@ -118,6 +117,7 @@ function Eventos() {
     messengerReady = true;
     messengerReadyCount = messengerReadyCount + 1;
     if (messengerReadyCount > 1){
+      messengerReadyCount = 0;
       let fieldEstado = document.getElementById("fieldEstado");
       fieldEstado.innerHTML = "Listo";
     }
@@ -151,6 +151,8 @@ function Eventos() {
   
   Genesys("subscribe", "Launcher.visible", function(data){
     console.log("** " + data.event + " **");
+    let btnToggle = document.getElementById("btnToggle");
+    btnToggle.className = "oculto";
   });
   
   clearInterval(intervalIdEventos);
@@ -249,7 +251,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.15");
+  console.log("Version 1.16");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
