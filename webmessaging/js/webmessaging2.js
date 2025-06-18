@@ -52,7 +52,7 @@ function Eventos(){
       
     }
     console.log(statusData);
-    if (conversationActive && !fromIniciar){
+    if (conversationActive && !fromIniciar && loadPage){
       loadPage = false;
       fromIniciar = true;
       activeReload = true;
@@ -69,6 +69,8 @@ function Eventos(){
 
       let btnIniciar = document.getElementById("btnIniciarChat");
       btnIniciarChat.className = "oculto";
+    } else {
+      AsignarAtributosFinalizada();
     }
   });
 
@@ -84,6 +86,7 @@ function Eventos(){
     if (fromIniciar){
       if (conversationActive){
         fromIniciar = false;
+        playNotification = false;
         console.log("** Desplegar Encuesta **");
       }
       if (!newSession && !activeReload){
@@ -101,7 +104,9 @@ function Eventos(){
   Genesys("subscribe", "MessagingService.messagesReceived", function(data){
     console.log("** " + data.event + " **");
     if (data.data.messages[0].direction == "Outbound"){
-      console.log("** Reproducir Sonido **");
+      if (playNotification){
+        console.log("** Reproducir Sonido **");
+      }
     }
   });
 
@@ -230,6 +235,7 @@ let loadPage = true;
 let activeReload = false;
 
 let fromIniciar = false;
+let playNotification = true;
 
 let conversationActive = false;
 let newSession = false;
@@ -248,7 +254,7 @@ let intervalIdEventos;
 let intervalIdStart;
 
 window.onload = function () {
-  console.log("Version 1.18");
+  console.log("Version 1.19");
   intervalIdEventos = setInterval(Eventos, 500);
   intervalIdStart = setInterval(checkStart, 500);
 }
