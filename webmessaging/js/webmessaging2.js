@@ -111,7 +111,7 @@ function Eventos() {
   Genesys("subscribe", "MessagingService.error", function(data){
     console.log("** " + data.event + " **");
     console.log(data.body);
-  };
+  });
 
   Genesys("subscribe", "Messenger.ready", function(data){
     console.log("** " + data.event + " **");
