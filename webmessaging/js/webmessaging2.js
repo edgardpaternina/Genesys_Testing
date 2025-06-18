@@ -101,11 +101,11 @@ function Eventos() {
   Genesys("subscribe", "MessagingService.messagesReceived", function({data}){
     //console.log("** " + data.event + " **");
     console.log(data);
-    /*if (data.data.messages[0].direction == "Outbound"){
-      if (playNotification){
-        console.log("** Reproducir Sonido **");
-      }
-    }*/
+    //if (data.data.messages[0].direction == "Outbound"){
+      //if (playNotification){
+        //console.log("** Reproducir Sonido **");
+      //}
+    //}
   });
 
   Genesys("subscribe", "MessagingService.error", function(data){
