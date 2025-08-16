@@ -1,0 +1,167 @@
+<style>
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  background: #23395d;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.logo {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.container {
+  background: #fff;
+  margin-top: 60px;
+  padding: 40px 32px 32px 32px;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  min-width: 340px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+h2 {
+  color: #23395d;
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+label {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  display: block;
+  color: #4062bb;
+  text-align: left;
+}
+
+select, input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1em;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #bfc0c0;
+  background: #f7faff;
+  transition: border 0.2s;
+}
+
+select:focus, input:focus {
+  border: 1.5px solid #4062bb;
+  outline: none;
+}
+
+button {
+  background: linear-gradient(90deg, #4062bb 0%, #66a6ff 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(64, 98, 187, 0.10);
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #66a6ff 0%, #4062bb 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.oculto {
+  display: none;
+}
+.visible {
+  display: inline-block;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 16px;
+}
+.botones button {
+  width: 80%;
+  max-width: 260px;
+}
+
+/* Separador con icono */
+.separador-icono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0 16px 0;
+  height: 40px;
+  opacity: 0.7;
+}
+.separador-icono svg {
+  display: block;
+  /* Cambia el color del icono a azul */
+  stroke: #4062bb;
+}
+.separador-icono svg circle,
+.separador-icono svg path {
+  stroke: #4062bb;
+}
+
+/* Opciones extra separadas visualmente */
+.extra-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-top: 0;
+  padding-top: 16px;
+  border-top: 1.5px solid #e3eafc;
+}
+.extra-opciones input,
+.extra-opciones button {
+  width: 80%;
+  max-width: 260px;
+}
+
+.extra-bloque {
+  opacity: 1;
+  max-height: 500px;
+  transition: opacity 0.4s, max-height 0.4s;
+  overflow: hidden;
+}
+.extra-bloque.oculto {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .container {
+    min-width: 90vw;
+    padding: 24px 8px;
+  }
+  nav {
+    padding: 0 8px;
+  }
+  .logo {
+    font-size: 1.3rem;
+  }
+}
+</style>
